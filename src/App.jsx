@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 import './App.css';
 import TopBar from './Components/TopBar';
 import AuthButtonArea from './Components/AuthButtonArea';
+import QRCode from './Components/QRCode'
 
 
 class App extends Component {
   static propTypes = {
-    authenticated: PropTypes.boolean.isRequired,
-    atQR: PropTypes.boolean.isRequired,
+    authenticated: PropTypes.bool.isRequired,
+    atQR: PropTypes.bool.isRequired,
   }
 
   render() {
@@ -18,12 +19,12 @@ class App extends Component {
       <div className="App">
         <TopBar />
         {
-          !authenticated &&
+          !authenticated && !atQR &&
           <AuthButtonArea />
         }
         {
           !authenticated && atQR &&
-          'QR'
+          <QRCode />
         }
       </div>
     );
@@ -32,7 +33,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   authenticated: state.auth.authenticated,
-  atQR: state.auth.authenticated,
+  atQR: state.auth.atQR,
 })
 
 export default connect(mapStateToProps)(App);
