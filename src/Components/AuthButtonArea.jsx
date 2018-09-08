@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 import AuthButton from './AuthButton'
+import { Actions } from '../duck/auth'
 
 const AuthButtonsArea = styled.div`
   display: flex;
@@ -31,4 +33,8 @@ class AuthButtonArea extends Component {
   }
 }
 
-export default AuthButtonArea;
+const mapDispatchToProps = dispatch => ({
+  chooseEthenticate: () => dispatch(Actions.chooseEthenticate()),
+})
+
+export default connect(null, mapDispatchToProps)(AuthButtonArea);
