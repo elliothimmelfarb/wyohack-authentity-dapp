@@ -31,4 +31,4 @@ class AuthButtonArea extends Component {
   }
 }
 
-export default AuthButtonArea
+export default AuthButtonArea;
