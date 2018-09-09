@@ -1,7 +1,8 @@
 import Web3 from 'web3'
 import { decodeFromHex } from './hexutils'
+import { Actions } from '../auth'
 
-export default async () => {
+export default async (dispatch) => {
   console.log('initiating whisper listen')
 
   const provider = new Web3.providers.WebsocketProvider('ws://34.211.111.228:8586');
@@ -34,6 +35,7 @@ export default async () => {
     console.log(`data coded: ${payload}`);
     const payloadDecoded = decodeFromHex(data.payload);
     console.log(`data decoded: ${JSON.stringify(payloadDecoded)}`);
+    dispatch(Actions.messageReceived(payloadDecoded))
   });
   return publicKey
 }
