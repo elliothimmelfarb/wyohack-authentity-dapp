@@ -32,9 +32,6 @@ const clickInitEthenticate = () => async dispatch => {
 const messageReceived = payload => dispatch => {
   console.log(payload)
   // validate claim
-  // if claim is valid
-    // dispatch authenticated passing in user
-  // else
 }
 
 // export actions
@@ -48,6 +45,7 @@ const initialState = {
   subscribing: false,
   atQR: false,
   pubKey: '',
+  authFailed: false,
 }
 
 export default (state = initialState, action) => {
@@ -64,6 +62,19 @@ export default (state = initialState, action) => {
         atQR: true,
         subscribing: false,
         pubKey: action.payload,
+      }
+    }
+    case AUTHENTICATED: {
+      return {
+        ...state,
+        authenticated: true,
+        atQR: false,
+        authFailed: false,
+      }
+    }
+    case AUTH_FAILED: {
+      return {
+        authFailed: true,
       }
     }
     default: return state

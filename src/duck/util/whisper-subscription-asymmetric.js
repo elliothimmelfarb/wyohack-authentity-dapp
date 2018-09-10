@@ -7,6 +7,8 @@ export default async (dispatch) => {
 
   const provider = new Web3.providers.WebsocketProvider('ws://34.211.111.228:8586');
 
+  console.log(provider)
+
   let keyID;
   let privateKey;
   let publicKey;
